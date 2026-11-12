@@ -984,3 +984,10 @@ html[dir="rtl"] .hero-actions { direction: rtl; }
 
 .contact-panel .contact-heading { grid-column: 1 / -1; width: 100%; }
 .contact-panel .contact-heading .association-name { max-width: none; margin-bottom: 0; }
+
+.about-purpose { margin-top: 28px; }
+.about-purpose-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.about-purpose h3 { font-size: 1.35rem; margin-bottom: 12px; }
+.about-purpose p { line-height: 1.7; }
+.about-welcome { margin: 22px 0 0; padding: 20px; border-inline-start: 4px solid var(--teal); background: var(--glass-bg); border-radius: 8px; }
+@media (max-width: 700px) { .about-purpose-grid { grid-template-columns: 1fr; gap: 12px; } }
