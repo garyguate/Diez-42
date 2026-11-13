@@ -995,3 +995,5 @@ html[dir="rtl"] .hero-actions { direction: rtl; }
 /* Align the About introduction around a shared vertical center. */
 #about > .two-column { align-items: center; }
 #about > .two-column > div > h2 { margin-bottom: 0; }
+
+.settings-toggle, .settings-toggle:hover { background: #fff; color: #234d77; border-color: #d5e0eb; }
