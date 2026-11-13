@@ -39,6 +39,8 @@
     if (next === "ar") document.title = "Diez42 | ترحيب ومساعدة عملية في مالقة";
     else if (next === "uk") document.title = "Diez42 | Практична допомога в Малазі";
     else document.title = "Diez42 | Welcome and practical help in Málaga";
+    const pageHeading = document.querySelector("main h1[data-text-en]");
+    if (pageHeading) document.title = readText(pageHeading, "data-text", next) + " | Diez42";
     storage.setItem("diez42-lang", next);
     document.querySelectorAll("[data-program-card]").forEach((card) => {
       card.lang = next;

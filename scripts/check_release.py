@@ -31,7 +31,7 @@ def check():
             cache[target] = Page(target.read_text())
         return cache[target]
 
-    for name in ('index.html', 'privacy.html', 'terms.html', 'data-deletion.html'):
+    for name in ('index.html', 'privacy.html', 'terms.html', 'data-deletion.html', 'horario.html', 'ayuda.html', 'donar.html', 'voluntariado.html', 'aviso-legal.html', 'cookies.html'):
         target = ROOT / name
         markup = target.read_text()
         nodes = page(target).nodes
@@ -63,6 +63,7 @@ def check():
     assert {a['data-language-option'] for _, a in home if 'data-language-option' in a} == {'en', 'es', 'pt-BR', 'de', 'ar', 'uk'}
     assert not any('data-theme-option' in a or 'data-transparency-range' in a or 'data-blur-range' in a for _, a in home)
     assert sum('data-settings-toggle' in a for _, a in home) == 1
+    assert len([a for tag,a in home if 'data-cookie-choice' in a]) == 2
     posters = [a for tag, a in home if tag == 'img' and 'data-src-es' in a]
     assert len(posters) == 11, 'expected all 11 program posters'
     for image in posters:
@@ -70,7 +71,7 @@ def check():
             assert (ROOT / image['data-src-' + language]).is_file(), f'missing {language} poster'
     sitemap = ET.parse(ROOT / 'sitemap.xml')
     locations = {item.text for item in sitemap.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
-    assert locations == {'https://diez42.org/' + name for name in ('', 'privacy.html', 'terms.html', 'data-deletion.html')}
+    assert locations == {'https://diez42.org/' + name for name in ('', 'privacy.html', 'terms.html', 'data-deletion.html', 'horario.html', 'ayuda.html', 'donar.html', 'voluntariado.html', 'aviso-legal.html', 'cookies.html')}
     assert 'Sitemap: https://diez42.org/sitemap.xml' in (ROOT / 'robots.txt').read_text()
     print(f'Release QA passed: v{version}, public links/assets, settings, 44 posters, crawler files.')
 
